@@ -4,11 +4,11 @@
 
 ## Dependencies
 
--   A reverse-proxy (nginx, caddy, haproxy, etc.)
--   A SMTP server
--   CouchDB 3
--   Git
--   Image Magick (and the Lato font, ghostscript et rsvg-convert)
+- A reverse-proxy (nginx, caddy, haproxy, etc.)
+- A SMTP server
+- CouchDB 3
+- Git
+- Image Magick (and the Lato font, ghostscript et rsvg-convert)
 
 To install CouchDB 3 through Docker, take a look at our
 [Docker specific documentation](docker.md).
@@ -26,6 +26,8 @@ Don't hesitate to [report issues](https://github.com/cozy/cozy.github.io/issues/
 It will help us improve documentation.
 
 ## Install for development / local tests
+
+Using [`devenv`](https://devenv.sh/)? refer to [Load devenv](INSTALL.md#load-devenv).
 
 ### Install the binary
 
@@ -60,11 +62,11 @@ that you can execute the binary without entering its full path.
 export PATH="$(go env GOPATH)/bin:$PATH"
 ```
 
-##### Troubleshooting
+#### Troubleshooting
 
 Check if you don't have an alias "go" configurated in your `*rc` file.
 
-### Add an instance for testing
+#### Server your local cozy
 
 You can configure your `cozy-stack` using a configuration file or different
 comand line arguments. Assuming CouchDB is installed and running on default port
@@ -73,6 +75,52 @@ comand line arguments. Assuming CouchDB is installed and running on default port
 ```bash
 cozy-stack serve
 ```
+
+### Load devenv
+
+Devenv allows you to automatically load a ready-to-use environment containing all required tools and services.
+It automatically loads when entering project folder and keeps everything up-to-date or on the correct version for you.
+
+> Please, make sure to use version >=1.4.1. Follow the guide:
+>
+> - [Installation](https://devenv.sh/getting-started/#installation)
+> - [Updating](https://devenv.sh/getting-started/#updating)
+
+Once installed, your environment should load-up directly when entering the project folder.
+
+```bash
+### Example output: ###
+
+direnv: loading /path/to/cozy-stack/.envrc
+direnv: using devenv
+• Building shell ...
+• Using Cachix: devenv
+✔ Building shell in 207ms
+Running tasks     devenv:enterShell
+Succeeded         devenv:git-hooks:install 32ms
+Succeeded         devenv:files             20ms
+Succeeded         devenv:enterShell        19ms
+3 Succeeded                                52.57ms
+
+Use `devenv up` first !
+🛋️ fauxton    at http://127.0.0.1:5984/_utils (user: cozy, pass: cozy)
+☁️ cozy       at http://cozy.localhost:8080/ (default pass: cozy)
+🛠️ cozy admin at http://127.0.0.1:6060/ (pass: cozy)
+✉️ mailhog    at http://127.0.0.1:8025/
+direnv: export +AR +AS +CC +CONFIG_SHELL +CXX +DEVENV_DIRENVRC_ROLLING_UPGRADE +DEVENV_DIRENVRC_VERSION +DEVENV_DOTFILE +DEVENV_PROFILE +DEVENV_ROOT +DEVENV_RUNTIME +DEVENV_STATE +DEVENV_TASKS +ERL_FLAGS +GETTEXTDATADIRS_FOR_BUILD +GIT_EXTERNAL_DIFF +GOPATH +GOROOT +GOTOOLCHAIN +GOTOOLDIR +IN_NIX_SHELL +LD +NIX_BINTOOLS +NIX_BINTOOLS_WRAPPER_TARGET_HOST_<host_arch_and_kernel> +NIX_CC +NIX_CC_WRAPPER_TARGET_HOST_<host_arch_and_kernel> +NIX_CFLAGS_COMPILE +NIX_ENFORCE_NO_NATIVE +NIX_HARDENING_ENABLE +NIX_LDFLAGS +NIX_PKG_CONFIG_WRAPPER_TARGET_HOST_<host_arch_and_kernel> +NIX_STORE +NM +NODE_PATH +OBJCOPY +OBJDUMP +PC_CONFIG_FILES +PC_SOCKET_PATH +PKG_CONFIG +PKG_CONFIG_PATH +RANLIB +READELF +SIZE +SOURCE_DATE_EPOCH +STRINGS +STRIP +cmakeFlags +configureFlags +hardeningDisable +mesonFlags +name +system ~GDK_PIXBUF_MODULE_FILE ~PATH ~XDG_DATA_DIRS
+```
+
+To start a local instance with all associated services running, use:
+
+```bash
+devenv up
+```
+
+Your local server is now started! *(to kill it, close your terminal or use \<F10\>)*
+
+***Please, open a new terminal to follow the rest of the documentation.***
+
+### Add an instance for testing
 
 And then create an instance for development:
 

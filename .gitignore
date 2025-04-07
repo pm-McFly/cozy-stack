@@ -27,3 +27,17 @@ tmp
 /debian/cozy/
 /debian/cozy-stack/
 /debian/tmp/
+
+# local config
+conf.yaml
+cozy-admin-passphrase
+
+# Devenv
+.devenv*
+devenv.local.nix
+
+# direnv
+.direnv
+
+# pre-commit
+.pre-commit-config.yaml
